@@ -1,17 +1,18 @@
-'use client';
+"use client";
 
-import { UserPlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import type { FC } from 'react';
-import React, { useContext, useState } from 'react';
-import { toast } from 'react-toastify';
+import { UserPlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import type React from "react";
+import type { FC } from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
-import { SocketContext } from '../../../utils/socket-provider';
+import { SocketContext } from "../../../utils/socket-provider";
 
 export const AddFriend: FC = () => {
   const { socket } = useContext(SocketContext);
 
   const [open, setOpen] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
 
   const closeModal = () => {
     setOpen(false);
@@ -20,10 +21,10 @@ export const AddFriend: FC = () => {
   const handleSendFriendRequest = (event: React.FormEvent) => {
     event.preventDefault();
     if (socket) {
-      socket.emit('send_friend_request', { email });
-      setEmail('');
+      socket.emit("send_friend_request", { email });
+      setEmail("");
       closeModal();
-      toast.success('Friend request has been sent successfully');
+      toast.success("Friend request has been sent successfully");
     }
   };
 
@@ -50,10 +51,15 @@ export const AddFriend: FC = () => {
               <span className="sr-only">Close modal</span>
             </button>
             <div className="p-6 lg:px-8">
-              <h3 className="mb-4 text-xl font-medium text-white">Add Friend</h3>
+              <h3 className="mb-4 text-xl font-medium text-white">
+                Add Friend
+              </h3>
               <form className="space-y-6" onSubmit={handleSendFriendRequest}>
                 <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-white">
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-sm font-medium text-white"
+                  >
                     Email
                   </label>
                   <input

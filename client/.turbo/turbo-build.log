@@ -1,0 +1,22 @@
+
+
+> secure-chat-client@0.1.0 build /home/mehanisik/side-projects/secureChat/client
+> next build --webpack
+
+ [33m[1m⚠[22m[39m Invalid next.config.js options detected: 
+ [33m[1m⚠[22m[39m     Unrecognized key(s) in object: 'appDir' at "experimental"
+ [33m[1m⚠[22m[39m See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ [33m[1m⚠[22m[39m Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/mehanisik/side-projects/secureChat/pnpm-lock.yaml as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /home/mehanisik/side-projects/secureChat/client/pnpm-lock.yaml
+
+   [1m[38;2;173;127;168m▲ Next.js 16.0.6[39m[22m (webpack)
+   - Experiments (use with caution):
+     ? [9mappDir[29m (invalid experimental key)
+
+ [33m[1m⚠[22m[39m The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+ [37m[1m [22m[39m Creating an optimized production build ...
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 130.[39m

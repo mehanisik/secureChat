@@ -19,3 +19,13 @@ yarn-error.log*
 next-env.d.ts
 dist/
 **/.env
+
+# Logs
+*.log
+pnpm-debug.log*
+
+# Turbo
+.turbo
+
+# Build
+build/

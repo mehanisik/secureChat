@@ -1,0 +1,64 @@
+
+> secureChat@0.1.0 build /home/mehanisik/side-projects/secureChat
+> turbo build
+
+turbo 2.6.1
+
+• Packages in scope: secure-chat-client, secure-chat-server
+• Running build in 2 packages
+• Remote caching disabled
+secure-chat-server:build: cache miss, executing 444b2d694e73d6fd
+secure-chat-client:build: cache miss, executing 609c524e51248ff3
+secure-chat-client:build: 
+secure-chat-client:build: > secure-chat-client@0.1.0 build /home/mehanisik/side-projects/secureChat/client
+secure-chat-client:build: > next build
+secure-chat-client:build: 
+secure-chat-server:build: 
+secure-chat-server:build: > secure-chat-server@1.0.0 build /home/mehanisik/side-projects/secureChat/server
+secure-chat-server:build: > tsc
+secure-chat-server:build: 
+secure-chat-client:build:  ⚠ Invalid next.config.js options detected: 
+secure-chat-client:build:  ⚠     Unrecognized key(s) in object: 'appDir' at "experimental"
+secure-chat-client:build:  ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+secure-chat-client:build:  ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+secure-chat-client:build:  We detected multiple lockfiles and selected the directory of /home/mehanisik/side-projects/secureChat/pnpm-lock.yaml as the root directory.
+secure-chat-client:build:  To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+secure-chat-client:build:    See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+secure-chat-client:build:  Detected additional lockfiles: 
+secure-chat-client:build:    * /home/mehanisik/side-projects/secureChat/client/pnpm-lock.yaml
+secure-chat-client:build: 
+secure-chat-client:build:    ▲ Next.js 16.0.6 (Turbopack)
+secure-chat-client:build:    - Experiments (use with caution):
+secure-chat-client:build:      ? appDir (invalid experimental key)
+secure-chat-client:build: 
+secure-chat-client:build:  ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+secure-chat-client:build:    Creating an optimized production build ...
+secure-chat-client:build:  ⨯ ERROR: This build is using Turbopack, with a `webpack` config and no `turbopack` config.
+secure-chat-client:build:    This may be a mistake.
+secure-chat-client:build: 
+secure-chat-client:build:    As of Next.js 16 Turbopack is enabled by default and
+secure-chat-client:build:    custom webpack configurations may need to be migrated to Turbopack.
+secure-chat-client:build: 
+secure-chat-client:build:    NOTE: your `webpack` config may have been added by a configuration plugin.
+secure-chat-client:build: 
+secure-chat-client:build:    To configure Turbopack, see https://nextjs.org/docs/app/api-reference/next-config-js/turbopack
+secure-chat-client:build: 
+secure-chat-client:build:    TIP: Many applications work fine under Turbopack with no configuration,
+secure-chat-client:build:    if that is the case for you, you can silence this error by passing the
+secure-chat-client:build:    `--turbopack` or `--webpack` flag explicitly or simply setting an 
+secure-chat-client:build:    empty turbopack config in your Next config file (e.g. `turbopack: {}`).
+secure-chat-server:build: error TS2688: Cannot find type definition file for 'bcryptjs'.
+secure-chat-server:build:   The file is in the program because:
+secure-chat-server:build:     Entry point for implicit type library 'bcryptjs'
+secure-chat-server:build:  ELIFECYCLE  Command failed with exit code 2.
+secure-chat-server:build: ERROR: command finished with error: command (/home/mehanisik/side-projects/secureChat/server) /usr/bin/pnpm run build exited (2)
+secure-chat-client:build:  ELIFECYCLE  Command failed with exit code 130.
+secure-chat-server#build: command (/home/mehanisik/side-projects/secureChat/server) /usr/bin/pnpm run build exited (2)
+
+ Tasks:    0 successful, 2 total
+Cached:    0 cached, 2 total
+  Time:    1.206s 
+Failed:    secure-chat-server#build
+
+ ERROR  run failed: command  exited (2)
+ ELIFECYCLE  Command failed with exit code 2.

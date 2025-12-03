@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import type { AxiosError } from 'axios';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
-import React, { useCallback, useState } from 'react';
-import type { SubmitHandler } from 'react-hook-form';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import type { AxiosError } from "axios";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
+import type { SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
-import { authApi } from '@/api/auth-api';
-import FormType from '@/constants/auth-form-type.enum';
+import { authApi } from "@/api/auth-api";
+import FormType from "@/constants/auth-form-type.enum";
 
-import type { FormValues } from './models/form-values.model';
+import type { FormValues } from "./models/form-values.model";
 
 export default function AuthForm() {
   const router = useRouter();
@@ -40,12 +40,12 @@ export default function AuthForm() {
       if (!response.success) {
         toast.error(`API call failed: ${response.message}`);
       } else if (formType === FormType.SIGN_IN) {
-        toast.success('Successfully signed in');
+        toast.success("Successfully signed in");
         const responseToken = response.data.token as string;
-        Cookies.set('token', responseToken);
-        router.push('/chat');
+        Cookies.set("token", responseToken);
+        router.push("/chat");
       } else {
-        toast.success('Registered successfully');
+        toast.success("Registered successfully");
         setFormType(FormType.SIGN_IN);
       }
     } catch (error) {
@@ -61,12 +61,18 @@ export default function AuthForm() {
         <div className="w-full rounded-lg  border border-gray-700 bg-gray-800 shadow sm:max-w-md md:mt-0 xl:p-0">
           <div className="space-y-4 p-6 sm:p-8 md:space-y-6">
             <h1 className="text-center text-xl font-bold leading-tight tracking-tight  text-white md:text-2xl">
-              {formType === FormType.SIGN_IN ? 'Sign in' : 'Sign up'}
+              {formType === FormType.SIGN_IN ? "Sign in" : "Sign up"}
             </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(onSubmit)}>
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               {formType === FormType.SIGN_UP && (
                 <div>
-                  <label htmlFor="name" className="mb-2 block text-sm font-medium  text-white">
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block text-sm font-medium  text-white"
+                  >
                     Your name
                   </label>
                   <input
@@ -74,13 +80,16 @@ export default function AuthForm() {
                     id="name"
                     className=" block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     placeholder="John Doe"
-                    {...register('name')}
+                    {...register("name")}
                     required
                   />
                 </div>
               )}
               <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-medium  text-white">
+                <label
+                  htmlFor="email"
+                  className="mb-2 block text-sm font-medium  text-white"
+                >
                   Your email
                 </label>
                 <input
@@ -88,12 +97,15 @@ export default function AuthForm() {
                   id="email"
                   className=" block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5  text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   placeholder="example@email.com"
-                  {...register('email')}
+                  {...register("email")}
                   required
                 />
               </div>
               <div>
-                <label htmlFor="password" className="mb-2 block text-sm font-medium  text-white">
+                <label
+                  htmlFor="password"
+                  className="mb-2 block text-sm font-medium  text-white"
+                >
                   Password
                 </label>
                 <input
@@ -101,7 +113,7 @@ export default function AuthForm() {
                   id="password"
                   placeholder="••••••••"
                   className=" block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5  text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  {...register('password')}
+                  {...register("password")}
                   required
                 />
               </div>
@@ -110,14 +122,17 @@ export default function AuthForm() {
                 type="submit"
                 className="mb-2 mr-2 w-full rounded-lg border  border-gray-600 bg-gray-800 px-5 py-2.5 text-sm font-medium text-gray-400  hover:bg-gray-700 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-700"
               >
-                {formType === FormType.SIGN_IN ? 'Sign in' : 'Sign up'}
+                {formType === FormType.SIGN_IN ? "Sign in" : "Sign up"}
               </button>
             </form>
             <button
+              type="button"
               onClick={handleChangeFormType}
               className="mb-2 mr-2  w-full rounded-lg border  border-gray-600 bg-gray-800 px-5 py-2.5 text-sm font-medium text-gray-400  hover:bg-gray-700 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-700"
             >
-              {formType === FormType.SIGN_IN ? 'Create account' : 'Go back to sign in!'}
+              {formType === FormType.SIGN_IN
+                ? "Create account"
+                : "Go back to sign in!"}
             </button>
           </div>
         </div>

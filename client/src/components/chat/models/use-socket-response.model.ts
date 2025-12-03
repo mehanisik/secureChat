@@ -1,9 +1,9 @@
-import type { Dispatch, SetStateAction } from 'react';
-import type { Socket } from 'socket.io-client';
+import type { Dispatch, SetStateAction } from "react";
+import type { Socket } from "socket.io-client";
 
-import type { FriendRequest } from './friend-request.model';
-import type { Message } from './message.model';
-import type { User } from './user.model';
+import type { FriendRequest } from "./friend-request.model";
+import type { Message } from "./message.model";
+import type { User } from "./user.model";
 
 export interface UseSocketResponse {
   socket: Socket | null;

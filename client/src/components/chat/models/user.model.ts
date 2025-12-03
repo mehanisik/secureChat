@@ -1,4 +1,4 @@
-import { type Message } from './message.model';
+import type { Message } from "./message.model";
 
 export interface User {
   createdAt: string;

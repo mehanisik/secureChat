@@ -1,10 +1,8 @@
-import React from 'react';
-
-import { AddFriend } from '../../components/chat/add-friend-modal';
-import { FriendRequest } from '../../components/chat/friend-request-dropdown';
-import { Friends } from '../../components/chat/friends-dropdown';
-import { LogOut } from '../../components/chat/logout';
-import { MessageContainer } from '../../components/chat/message-container';
+import { AddFriend } from "../../components/chat/add-friend-modal";
+import { FriendRequest } from "../../components/chat/friend-request-dropdown";
+import { Friends } from "../../components/chat/friends-dropdown";
+import { LogOut } from "../../components/chat/logout";
+import { MessageContainer } from "../../components/chat/message-container";
 
 export default function Chat() {
   return (

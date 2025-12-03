@@ -1,15 +1,22 @@
-'use client';
+"use client";
 
-import Cookies from 'js-cookie';
-import type { Dispatch } from 'react';
-import { createContext, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
-import type { Socket } from 'socket.io-client';
-import { io } from 'socket.io-client';
+import Cookies from "js-cookie";
+import type { Dispatch } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { toast } from "react-toastify";
+import type { Socket } from "socket.io-client";
+import { io } from "socket.io-client";
 
-import type { FriendRequest } from '../../components/chat/models/friend-request.model';
-import type { Message } from '../../components/chat/models/message.model';
-import type { User } from '../../components/chat/models/user.model';
+import type { FriendRequest } from "../../components/chat/models/friend-request.model";
+import type { Message } from "../../components/chat/models/message.model";
+import type { User } from "../../components/chat/models/user.model";
 
 interface SocketContextProps {
   socket: Socket | null;
@@ -39,7 +46,11 @@ const socketInitialValues: SocketContextProps = {
 
 export const SocketContext = createContext(socketInitialValues);
 
-export default function SocketProvider({ children }: { children: React.ReactNode }) {
+export default function SocketProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [selectedFriend, setSelectedFriend] = useState<User | null>(null);
@@ -53,49 +64,56 @@ export default function SocketProvider({ children }: { children: React.ReactNode
   }, []);
 
   useEffect(() => {
-    const token = Cookies.get('token');
+    const token = Cookies.get("token");
     if (!token) return;
 
-    const newSocket = io(`${process.env.WS_URL}`, { auth: { token }, addTrailingSlash: false });
+    const newSocket = io(`${process.env.WS_URL}`, {
+      auth: { token },
+      addTrailingSlash: false,
+    });
 
-    newSocket.on('connect', () => {
+    newSocket.on("connect", () => {
       setIsConnected(true);
     });
 
-    newSocket.on('friend_request_received', (data: FriendRequest) => {
+    newSocket.on("friend_request_received", (data: FriendRequest) => {
       setFriendRequests((requests) => [...requests, data]);
-      toast.success('Friend request received!');
+      toast.success("Friend request received!");
     });
 
-    newSocket.on('friend_request_accepted', (data: FriendRequest) => {
-      setFriendRequests((prev) => prev.filter((req) => req.friendshipId !== data.friendshipId));
-      toast.success('Friend request accepted!');
+    newSocket.on("friend_request_accepted", (data: FriendRequest) => {
+      setFriendRequests((prev) =>
+        prev.filter((req) => req.friendshipId !== data.friendshipId),
+      );
+      toast.success("Friend request accepted!");
     });
 
-    newSocket.on('friend_request_rejected', (data: FriendRequest) => {
-      setFriendRequests((prev) => prev.filter((req) => req.friendshipId !== data.friendshipId));
-      toast.info('Friend request rejected!');
+    newSocket.on("friend_request_rejected", (data: FriendRequest) => {
+      setFriendRequests((prev) =>
+        prev.filter((req) => req.friendshipId !== data.friendshipId),
+      );
+      toast.info("Friend request rejected!");
     });
 
-    newSocket.on('friend_requests', (data: FriendRequest[]) => {
+    newSocket.on("friend_requests", (data: FriendRequest[]) => {
       setFriendRequests(data);
     });
-    newSocket.on('friends', (data: User[]) => {
+    newSocket.on("friends", (data: User[]) => {
       setFriends(data);
     });
-    newSocket.on('messages', (newMessages: Message[]) => {
+    newSocket.on("messages", (newMessages: Message[]) => {
       setMessages(newMessages);
     });
-    newSocket.on('message_received', (newMessage: Message) => {
+    newSocket.on("message_received", (newMessage: Message) => {
       setMessages((prev) => [...prev, newMessage]);
       scrollIntoView();
     });
 
-    newSocket.on('disconnect', () => {
+    newSocket.on("disconnect", () => {
       setIsConnected(false);
     });
 
-    newSocket.on('error', (newErr: string) => {
+    newSocket.on("error", (newErr: string) => {
       toast.error(`Error: ${newErr}`);
     });
 
@@ -127,12 +145,11 @@ export default function SocketProvider({ children }: { children: React.ReactNode
       messages,
       friends,
       friendRequests,
-      messageRef,
-      setSelectedFriend,
-      setMessages,
       scrollIntoView,
     ],
   );
 
-  return <SocketContext.Provider value={values}>{children}</SocketContext.Provider>;
+  return (
+    <SocketContext.Provider value={values}>{children}</SocketContext.Provider>
+  );
 }

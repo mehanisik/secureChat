@@ -1,7 +1,7 @@
-import express from 'express';
-import { body } from 'express-validator';
+import express from "express";
+import { body } from "express-validator";
 
-import { signIn, signUp } from '../controllers/auth';
+import { signIn, signUp } from "../controllers/auth";
 
 export const authRoutes = express.Router();
 
@@ -30,11 +30,11 @@ export const authRoutes = express.Router();
  *         description: Invalid request
  */
 authRoutes.post(
-  '/sign-up',
+  "/sign-up",
   [
-    body('email').isEmail().withMessage('Invalid email'),
-    body('email').notEmpty().withMessage('Email is required'),
-    body('password').notEmpty().withMessage('Password is required'),
+    body("email").isEmail().withMessage("Invalid email"),
+    body("email").notEmpty().withMessage("Email is required"),
+    body("password").notEmpty().withMessage("Password is required"),
   ],
   signUp,
 );
@@ -62,11 +62,11 @@ authRoutes.post(
  *         description: Invalid request
  */
 authRoutes.post(
-  '/sign-in',
+  "/sign-in",
   [
-    body('email').notEmpty().withMessage('Email is required'),
-    body('email').isEmail().withMessage('Invalid email'),
-    body('password').notEmpty().withMessage('Password is required'),
+    body("email").notEmpty().withMessage("Email is required"),
+    body("email").isEmail().withMessage("Invalid email"),
+    body("password").notEmpty().withMessage("Password is required"),
   ],
   signIn,
 );

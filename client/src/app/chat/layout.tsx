@@ -1,5 +1,9 @@
-import SocketProvider from '../../utils/socket-provider';
+import SocketProvider from "../../utils/socket-provider";
 
-export default function ChatLayout({ children }: { children: React.ReactNode }) {
+export default function ChatLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return <SocketProvider>{children}</SocketProvider>;
 }

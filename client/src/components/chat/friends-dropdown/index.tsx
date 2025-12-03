@@ -1,26 +1,27 @@
-'use client';
+"use client";
 
-import { UserGroupIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import type { FC } from 'react';
-import React, { useContext, useState } from 'react';
+import { UserGroupIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import type { FC } from "react";
+import { useContext, useState } from "react";
 
-import { SocketContext } from '../../../utils/socket-provider';
-import type { User } from '../models/user.model';
+import { SocketContext } from "../../../utils/socket-provider";
+import type { User } from "../models/user.model";
 
 export const Friends: FC = () => {
-  const { socket, friends, setSelectedFriend, scrollIntoView } = useContext(SocketContext);
+  const { socket, friends, setSelectedFriend, scrollIntoView } =
+    useContext(SocketContext);
   const [open, setOpen] = useState<boolean>(false);
 
   const closeModal = () => {
     setOpen(false);
   };
   const handleToggleDropdown = () => {
-    socket?.emit('get_friends');
+    socket?.emit("get_friends");
     setOpen(true);
   };
   const handleSelectFriend = (friend: User) => {
     setSelectedFriend?.(friend);
-    socket?.emit('get_messages', friend.userId);
+    socket?.emit("get_messages", friend.userId);
     scrollIntoView?.();
     closeModal();
   };
@@ -28,6 +29,7 @@ export const Friends: FC = () => {
   return (
     <div className="relative flex flex-col items-center rounded-lg">
       <button
+        type="button"
         onClick={handleToggleDropdown}
         className="mb-2 mr-2 flex flex-row items-center justify-between gap-2 rounded-lg border border-gray-600 bg-gray-800 px-5 py-2.5 text-sm font-medium text-gray-400 duration-300 hover:bg-gray-700 hover:text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-700"
       >
@@ -49,13 +51,14 @@ export const Friends: FC = () => {
               <h3 className="mb-4 text-xl font-medium text-white">Friends</h3>
               <div className="flex flex-col gap-2">
                 {friends.map((friend: User) => (
-                  <p
+                  <button
+                    type="button"
                     className="cursor-pointer text-gray-300 hover:text-white"
                     onClick={() => handleSelectFriend(friend)}
                     key={friend.userId}
                   >
                     {friend.email}
-                  </p>
+                  </button>
                 ))}
               </div>
             </div>

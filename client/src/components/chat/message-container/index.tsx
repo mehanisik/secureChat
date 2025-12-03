@@ -1,40 +1,51 @@
-'use client';
+"use client";
 
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
-import React, { useContext, useState } from 'react';
-import { toast } from 'react-toastify';
+import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import type React from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
-import { SocketContext } from '../../../utils/socket-provider';
-import type { Message } from '../models/message.model';
+import { SocketContext } from "../../../utils/socket-provider";
+import type { Message } from "../models/message.model";
 
 export const MessageContainer: React.FC = () => {
-  const { socket, messages, selectedFriend, messageRef, setMessages, scrollIntoView } = useContext(SocketContext);
-  const [content, setContent] = useState<string>('');
+  const {
+    socket,
+    messages,
+    selectedFriend,
+    messageRef,
+    setMessages,
+    scrollIntoView,
+  } = useContext(SocketContext);
+  const [content, setContent] = useState<string>("");
 
   const handleSendMessage = () => {
     if (!socket || !selectedFriend) return;
 
     if (content.trim().length === 0) {
-      toast.error('Message cannot be empty');
+      toast.error("Message cannot be empty");
       return;
     }
     const newMessage: Message = {
       receiverId: selectedFriend.userId,
       content: content.trim(),
     };
-    socket.emit('send_message', newMessage);
+    socket.emit("send_message", newMessage);
     setMessages?.((prev) => [...prev, newMessage]);
     scrollIntoView?.();
-    setContent('');
+    setContent("");
   };
 
   return (
     <div>
-      <div className="mb-2 flex h-[300px] flex-col gap-2 overflow-y-scroll rounded bg-gray-700 p-3" ref={messageRef}>
+      <div
+        className="mb-2 flex h-[300px] flex-col gap-2 overflow-y-scroll rounded bg-gray-700 p-3"
+        ref={messageRef}
+      >
         {messages.map((message) => (
           <p
             key={message.messageId}
-            className={`${message.senderId === selectedFriend?.userId ? 'text-left' : 'text-right'} text-white`}
+            className={`${message.senderId === selectedFriend?.userId ? "text-left" : "text-right"} text-white`}
           >
             {message.content}
           </p>
@@ -49,7 +60,7 @@ export const MessageContainer: React.FC = () => {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               e.preventDefault();
               handleSendMessage();
             }
